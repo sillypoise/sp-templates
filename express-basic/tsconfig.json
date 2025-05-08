@@ -13,6 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitOverride": true,
     "baseUrl": "src",
@@ -38,6 +39,9 @@
       "@middlewares/*": [
         "middlewares/*"
       ],
+      "@services/*": [
+        "services/*"
+      ],
       "@utils/*": [
         "utils/*"
       ],
@@ -46,6 +50,9 @@
       ],
       "@logger": [
         "logger/index.ts"
+      ],
+      "@schemas/*": [
+        "schemas/*"
       ]
     },
     "types": [
