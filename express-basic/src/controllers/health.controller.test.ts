@@ -1,5 +1,5 @@
-import request from 'supertest';
 import app from '@app';
+import request from 'supertest';
 
 describe('GET /api/health', () => {
   it('should return 200 with status ok', async () => {

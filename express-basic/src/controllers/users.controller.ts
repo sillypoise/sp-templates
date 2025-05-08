@@ -1,6 +1,6 @@
-import type { Request, RequestHandler, Response } from "express";
-import { getUsers, createUser } from "@services/users.service";
 import { userCreateSchema } from "@schemas/users.schema";
+import { createUser, getUsers } from "@services/users.service";
+import type { Request, RequestHandler, Response } from "express";
 
 export const handleGetUsers = (
   _req: Request,

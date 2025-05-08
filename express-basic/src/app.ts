@@ -1,17 +1,17 @@
-import express, { Application } from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
+import cors from "cors";
+import express, { type Application } from "express";
+import morgan from "morgan";
 
-import routes from '@routes/index';
-import { errorHandler } from '@middlewares/error-handler';
+import { errorHandler } from "@middlewares/error-handler";
+import routes from "@routes/index";
 
 const app: Application = express();
 
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 
-app.use('/api', routes);
+app.use("/api", routes);
 
 app.use(errorHandler);
 

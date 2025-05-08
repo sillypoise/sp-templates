@@ -21,6 +21,9 @@
       "@app": [
         "app.ts"
       ],
+      "@config": [
+        "config/index.ts"
+      ],
       "@db/*": [
         "db/*"
       ],
