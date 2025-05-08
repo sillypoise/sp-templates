@@ -7,7 +7,9 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsup src/index.ts --out-dir dist --format esm",
     "clean": "rm -rf dist",
-    "lint": "eslint . --ext .ts",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write .",
     "test": "vitest run",
     "test:watch": "vitest"
   },
