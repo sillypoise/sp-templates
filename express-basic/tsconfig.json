@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": [
+      "ES2022"
+    ],
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitOverride": true,
+    "baseUrl": "src",
+    "paths": {
+      "@app": [
+        "app.ts"
+      ],
+      "@db/*": [
+        "db/*"
+      ],
+      "@server": [
+        "server.ts"
+      ],
+      "@index": [
+        "index.ts"
+      ],
+      "@routes/*": [
+        "routes/*"
+      ],
+      "@controllers/*": [
+        "controllers/*"
+      ],
+      "@middlewares/*": [
+        "middlewares/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@models/*": [
+        "models/*"
+      ],
+      "@logger": [
+        "logger/index.ts"
+      ]
+    },
+    "types": [
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

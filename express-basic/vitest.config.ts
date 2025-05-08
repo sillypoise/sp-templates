@@ -1,0 +1,28 @@
+import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'node',
+  },
+  resolve: {
+    alias: {
+      '@app': path.resolve(__dirname, './src/app.ts'),
+      '@db': path.resolve(__dirname, './src/db'),
+      '@server': path.resolve(__dirname, './src/server.ts'),
+      '@index': path.resolve(__dirname, './src/index.ts'),
+      '@routes': path.resolve(__dirname, './src/routes'),
+      '@controllers': path.resolve(__dirname, './src/controllers'),
+      '@middlewares': path.resolve(__dirname, './src/middlewares'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@models': path.resolve(__dirname, './src/models'),
+      '@logger': path.resolve(__dirname, './src/logger/index.ts'),
+    },
+  },
+});
+
