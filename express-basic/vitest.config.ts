@@ -14,6 +14,7 @@ export default defineConfig({
 		alias: {
 			"@app": path.resolve(__dirname, "./src/app.ts"),
 			"@config": path.resolve(__dirname, "./src/config/index.ts"),
+			"@config/*": path.resolve(__dirname, "./src/config"),
 			"@db/*": path.resolve(__dirname, "./src/db"),
 			"@server": path.resolve(__dirname, "./src/server.ts"),
 			"@index": path.resolve(__dirname, "./src/index.ts"),

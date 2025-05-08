@@ -1,25 +1,20 @@
-import path from "node:path";
 import dotenv from "dotenv";
-import { z } from "zod";
+import { configSchema } from "@config/schema";
+import { envToStr, envToNumber } from "@config/helpers";
+import { stage } from "@config/stage";
+import path from "node:path";
 
 dotenv.config();
 
-const envSchema = z.object({
-	NODE_ENV: z
-		.enum(["development", "test", "production"])
-		.default("development"),
-	PORT: z.coerce.number().default(8080),
-	DB_PATH: z.string().default(path.resolve(process.cwd(), "sqlite.db")),
-	SCHEMA_PATH: z
-		.string()
-		.default(path.resolve(process.cwd(), "scripts", "setup.sql")),
+export const config = configSchema.parse({
+	stage,
+	port: envToNumber(process.env.PORT, 8080),
+	db_path: envToStr(
+		process.env.DB_PATH,
+		path.resolve(process.cwd(), "sqlite.db"),
+	),
+	db_schema_path: envToStr(
+		process.env.DB_PATH,
+		path.resolve(process.cwd(), "scripts", "setup.sql"),
+	),
 });
-
-const env = envSchema.safeParse(process.env);
-
-if (!env.success) {
-	console.error("❌ Invalid environment variables:", env.error.format());
-	process.exit(1);
-}
-
-export const config = env.data;

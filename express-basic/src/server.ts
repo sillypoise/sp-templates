@@ -3,12 +3,14 @@ import app from "@app";
 import { config } from "@config";
 import { logger } from "@logger";
 
-const { PORT } = config;
+const { port } = config;
 
 const server = http.createServer(app);
 
-server.listen(PORT, () => {
-	logger.info(`🚀 Server running at http://localhost:${config.PORT}`);
+server.listen(port, () => {
+	logger.info(
+		`🚀 Server starting in ${config.stage} mode on port ${config.port}`,
+	);
 });
 
 // Graceful shutdown

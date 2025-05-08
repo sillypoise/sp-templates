@@ -24,6 +24,9 @@
       "@config": [
         "config/index.ts"
       ],
+      "@config/*": [
+        "config/*"
+      ],
       "@db/*": [
         "db/*"
       ],
