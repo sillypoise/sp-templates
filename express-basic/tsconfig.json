@@ -57,6 +57,9 @@
       "@logger": [
         "logger/index.ts"
       ],
+      "@logger/*": [
+        "logger/*"
+      ],
       "@schemas/*": [
         "schemas/*"
       ]
