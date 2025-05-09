@@ -1,14 +1,19 @@
-export function envToStr(value: string | undefined): string | undefined {
-	return value;
+export function envToStr<T extends string = string>(
+  value: string | undefined,
+): T | undefined {
+  return value as T | undefined;
 }
 
-export function envToNumber(value: string | undefined): number | undefined {
-	if (value === undefined || value === "") return undefined;
-	const parsed = Number(value);
-	return Number.isNaN(parsed) ? undefined : parsed;
+export function envToNumber<T extends number = number>(
+  value: string | undefined,
+): T | undefined {
+  const parsed = Number(value);
+  return value === undefined || Number.isNaN(parsed)
+    ? undefined
+    : (parsed as T);
 }
 
 export function envToBool(value: string | undefined): boolean {
-	if (!value) return false;
-	return ["true", "1", "yes"].includes(value.toLowerCase());
+  if (!value) return false;
+  return ["true", "1", "yes"].includes(value.toLowerCase());
 }

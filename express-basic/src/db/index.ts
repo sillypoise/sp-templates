@@ -10,14 +10,14 @@ const db = new Database(db_path);
 
 // Optionally run schema setup
 export const initDb = (): void => {
-	if (!fs.existsSync(db_path)) {
-		logger.info("🆕 Creating new SQLite database...");
-	}
+  if (!fs.existsSync(db_path)) {
+    logger.info("🆕 Creating new SQLite database...");
+  }
 
-	const schema = fs.readFileSync(db_schema_path, "utf-8");
-	db.exec(schema);
+  const schema = fs.readFileSync(db_schema_path, "utf-8");
+  db.exec(schema);
 
-	logger.info("✅ SQLite database initialized");
+  logger.info("✅ SQLite database initialized");
 };
 
 export default db;
