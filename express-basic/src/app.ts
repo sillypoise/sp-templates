@@ -3,7 +3,6 @@ import express, { type Express } from "express";
 import { logger } from "@logger";
 import { errorHandler } from "@middlewares/error-handler";
 import { applyMiddleware } from "@middlewares/loader";
-import routes from "@routes/index";
 import { mountRoutes } from "@routes/loader";
 
 const app: Express = express();

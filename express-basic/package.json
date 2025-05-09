@@ -1,43 +1,43 @@
 {
-	"name": "spt-express-basic",
-	"version": "1.0.0",
-	"main": "dist/index.js",
-	"scripts": {
-		"db:init": "tsx src/db/init.ts",
-		"dev": "NODE_ENV=development tsx watch src/index.ts",
-		"build": "tsup src/index.ts --out-dir dist --format esm",
-		"clean": "rm -rf dist",
-		"lint": "biome lint .",
-		"format": "biome format . --write",
-		"check": "biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write .",
-		"test": "vitest run --reporter verbose",
-		"test:watch": "vitest"
-	},
-	"type": "module",
-	"dependencies": {
-		"better-sqlite3": "^11.9.1",
-		"cors": "^2.8.5",
-		"dotenv": "^16.5.0",
-		"express": "^5.1.0",
-		"helmet": "^8.1.0",
-		"morgan": "^1.10.0",
-		"winston": "^3.17.0",
-		"zod": "^3.24.3"
-	},
-	"devDependencies": {
-		"@types/better-sqlite3": "7.6.13",
-		"@types/cors": "^2.8.17",
-		"@types/express": "^5.0.1",
-		"@types/morgan": "^1.9.9",
-		"@types/node": "^22.14.1",
-		"@types/supertest": "^6.0.3",
-		"eslint": "^9.25.1",
-		"eslint-config-prettier": "^10.1.2",
-		"supertest": "^7.1.0",
-		"tsup": "^8.4.0",
-		"tsx": "^4.19.3",
-		"typescript": "^5.8.3",
-		"vite-tsconfig-paths": "^5.1.4",
-		"vitest": "^3.1.2"
-	}
+  "name": "spt-express-basic",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "db:init": "tsx src/db/init.ts",
+    "dev": "op run --env-file=secrets/dev.env -- tsx watch src/index.ts",
+    "build": "tsup src/index.ts --out-dir dist --format esm",
+    "clean": "rm -rf dist",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write .",
+    "test": "vitest run --reporter verbose",
+    "test:watch": "vitest"
+  },
+  "type": "module",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
+    "winston": "^3.17.0",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "7.6.13",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.14.1",
+    "@types/supertest": "^6.0.3",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "supertest": "^7.1.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2"
+  }
 }
