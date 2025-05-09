@@ -3,33 +3,41 @@ import app from "@app";
 import { config } from "@config";
 import db from "@db";
 import { logger } from "@logger";
+import { registerShutdown, runShutdownTasks } from "@utils/shutdown";
 
 const server = http.createServer(app);
 
 server.listen(config.port, () => {
-  logger.info(
-    `🚀 Server starting in ${config.stage} mode on port ${config.port}`,
-  );
+	logger.info(
+		`🚀 Server starting in ${config.stage} mode on port ${config.port}`,
+	);
 });
 
-// 🔧 Graceful shutdown
-const shutdown = (signal: string): void => {
-  logger.info(`🧼 Received ${signal}. Initiating graceful shutdown...`);
+// ✅ Register shutdown steps
+registerShutdown(() => {
+	logger.info("🧼 Closing HTTP server...");
+	return new Promise<void>((resolve) => {
+		server.close(() => {
+			logger.info("✅ HTTP server closed.");
+			resolve();
+		});
+	});
+});
 
-  server.close(() => {
-    logger.info("✅ HTTP server closed.");
+// Easily extend and shutdown more internal modules
+// registerShutdown(() => queue.stop());
 
-    try {
-      db.close(); // important for file-backed SQLite
-      logger.info("✅ SQLite database connection closed.");
-    } catch (err) {
-      logger.error("❌ Error closing SQLite DB:", err);
-    }
+registerShutdown(() => {
+	logger.info("🧼 Closing SQLite DB...");
+	db.close();
+	logger.info("✅ SQLite DB closed.");
+});
 
-    // Add cleanup for background jobs, etc., if needed
-
-    process.exit(0);
-  });
+// ✅ Signal handler
+const shutdown = async (signal: string): Promise<never> => {
+	logger.info(`📴 Received ${signal}. Shutting down...`);
+	await runShutdownTasks();
+	process.exit(0);
 };
 
 process.on("SIGINT", () => shutdown("SIGINT"));
