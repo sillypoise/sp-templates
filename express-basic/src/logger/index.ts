@@ -1,4 +1,5 @@
-import winston from 'winston';
+import winston from "winston";
+import { config } from "@config";
 
 const { combine, timestamp, printf, colorize } = winston.format;
 
@@ -7,11 +8,11 @@ const customFormat = printf(({ level, message, timestamp }) => {
 });
 
 export const logger = winston.createLogger({
-  level: 'info',
+  level: config.log_level,
   format: combine(
     colorize(),
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    customFormat
+    timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    customFormat,
   ),
   transports: [new winston.transports.Console()],
 });
