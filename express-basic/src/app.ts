@@ -1,15 +1,12 @@
-import cors from "cors";
-import express, { type Application } from "express";
+import express, { type Express } from "express";
 
 import { errorHandler } from "@middlewares/error-handler";
 import routes from "@routes/index";
-import { httpLogger } from "@logger/https-logger";
+import { applyMiddleware } from "@middlewares/loader";
 
-const app: Application = express();
+const app: Express = express();
 
-app.use(cors());
-app.use(httpLogger);
-app.use(express.json());
+applyMiddleware(app);
 
 app.use("/api", routes);
 
