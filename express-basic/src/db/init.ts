@@ -1,4 +1,4 @@
-import { initDb } from '@db/index';
+import { initDb } from "@db/index";
 
 initDb();
 
