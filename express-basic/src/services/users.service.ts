@@ -1,7 +1,7 @@
 import {
+  type User,
   createUser as createUserInDb,
   getAllUsers,
-  type User,
 } from "@models/users.model";
 
 export const getUsers = (): User[] => {

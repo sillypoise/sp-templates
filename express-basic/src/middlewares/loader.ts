@@ -1,10 +1,10 @@
-import express from "express";
-import helmet from "helmet";
 import cors from "cors";
-import type { RequestHandler, Express } from "express";
+import express from "express";
+import type { Express, RequestHandler } from "express";
+import helmet from "helmet";
 
-import { httpLogger } from "@logger/http-logger";
 import { config } from "@config";
+import { httpLogger } from "@logger/http-logger";
 
 // 1. List middleware names in the _required_ order
 const middlewareOrder = [

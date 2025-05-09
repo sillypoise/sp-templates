@@ -1,9 +1,9 @@
 import express, { type Express } from "express";
 
-import { errorHandler } from "@middlewares/error-handler";
-import routes from "@routes/index";
-import { applyMiddleware } from "@middlewares/loader";
 import { logger } from "@logger";
+import { errorHandler } from "@middlewares/error-handler";
+import { applyMiddleware } from "@middlewares/loader";
+import routes from "@routes/index";
 
 const app: Express = express();
 

@@ -1,6 +1,6 @@
-import winston from "winston";
 import { config } from "@config";
 import type morgan from "morgan";
+import winston from "winston";
 
 const { combine, timestamp, errors, json, printf } = winston.format;
 

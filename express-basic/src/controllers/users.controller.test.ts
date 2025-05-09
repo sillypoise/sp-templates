@@ -1,5 +1,5 @@
-import request from "supertest";
 import app from "@app";
+import request from "supertest";
 
 describe("Users Controller", () => {
   describe("GET /api/users", () => {

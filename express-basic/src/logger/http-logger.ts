@@ -1,6 +1,6 @@
-import morgan from "morgan";
-import type { Request, Response } from "express";
 import { morganStream } from "@logger";
+import type { Request, Response } from "express";
+import morgan from "morgan";
 
 export const httpLogger = morgan(
   (tokens, req: Request, res: Response): string => {
