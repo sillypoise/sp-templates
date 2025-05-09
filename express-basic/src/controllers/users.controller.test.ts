@@ -6,23 +6,23 @@ describe("/users controller", () => {
   beforeEach(() => {
     resetDb();
   });
-  describe("GET /api/users", () => {
+  describe("GET /api/v1/users", () => {
     it("returns 200 and a list of users", async () => {
-      const res = await request(app).get("/api/users");
+      const res = await request(app).get("/api/v1/users");
 
       expect(res.status).toBe(200);
       expect(Array.isArray(res.body)).toBe(true);
     });
   });
 
-  describe("POST /api/users", () => {
+  describe("POST /api/v1/users", () => {
     it("creates a new user and returns 201", async () => {
       const user = {
         name: "Test User",
         email: `test+${Date.now()}@example.com`,
       };
 
-      const res = await request(app).post("/api/users").send(user);
+      const res = await request(app).post("/api/v1/users").send(user);
 
       expect(res.status).toBe(201);
       expect(res.body).toEqual(
@@ -36,7 +36,7 @@ describe("/users controller", () => {
     });
 
     it("returns 400 when given invalid input", async () => {
-      const res = await request(app).post("/api/users").send({
+      const res = await request(app).post("/api/v1/users").send({
         name: "",
         email: "not-an-email",
       });
