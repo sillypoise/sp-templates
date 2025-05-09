@@ -1,10 +1,10 @@
 import { type AppConfig, config } from "@config";
+import type { apiVersions } from "@config/schema";
 import healthRoutes from "@routes/health.route";
 import userRoutes from "@routes/users.route";
 import type { Express, Router } from "express";
 // import userV2Routes from "@routes/v2/users.route"; // hypothetical
 
-export const apiVersions = ["v1", "v2"] as const;
 const routeOrder = ["health", "users"] as const;
 const standaloneRouteKeys = ["admin", "health", "internal"] as const;
 

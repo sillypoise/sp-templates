@@ -1,6 +1,7 @@
 import path from "node:path";
-import { apiVersions } from "@routes/loader";
 import { z } from "zod";
+
+export const apiVersions = ["v1", "v2"] as const;
 
 export const configSchema = z.object({
 	api_version: z.enum(apiVersions).default("v1"),
