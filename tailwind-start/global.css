@@ -1,0 +1,10 @@
+body {
+	background: var(--color-neutral-800);
+	color: var(--color-neutral-200);
+	font-size: var(--text-1);
+	font-family: var(--font-sans);
+	line-height: var(--leading-standard);
+	/* makes elements like <code> a more in-proportion size based on your base font */
+	font-size-adjust: from-font; /* modify the size of lowercase letters relative to the size of uppercase letters. */
+	margin: 0;
+}

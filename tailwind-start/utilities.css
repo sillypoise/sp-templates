@@ -1,0 +1,108 @@
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@utility flow {
+  & > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
+}
+
+@utility flow-* {
+  & > * + * {
+    margin-block-start: var(--flow-space, --value(--spacing-*));
+  }
+}
+
+@utility flow-space-* {
+  --flow-space: --value(--spacing-*);
+}
+
+@utility gutter-space-* {
+  --gutter: --value(--spacing-*);
+}
+
+/* 
+REGION UTILITY
+Consistent block padding for page sections
+*/
+@utility region {
+  padding-block: var(--region-space, --value(--spacing-m));
+  position: relative;
+}
+
+@utility indent-color-* {
+  --indent-color: --value(--color-*);
+}
+
+@utility focus-color-* {
+  --focus-color: --value(--color-*);
+}
+
+@utility mbs-* {
+  margin-block-start: --value(--spacing-*);
+}
+
+@utility mbe-* {
+  margin-block-end: --value(--spacing-*);
+}
+
+@utility mis-* {
+  margin-inline-start: --value(--spacing-*);
+}
+
+@utility mie-* {
+  margin-inline-end: --value(--spacing-*);
+}
+
+@utility pbs-* {
+  padding-block-start: --value(--spacing-*);
+}
+
+@utility pbe-* {
+  padding-block-end: --value(--spacing-*);
+}
+
+@utility pis-* {
+  padding-inline-start: --value(--spacing-*);
+}
+
+@utility pie-* {
+  padding-inline-start: --value(--spacing-*);
+}
+
+@utility decoration-none {
+  text-decoration: none;
+}
+
+@utility uppercase-kerning {
+  letter-spacing: 0.04ch;
+}
+
+@utility href-hover { 
+  &:has([href]:hover) {
+    background: rgb(from var(--color-light) r g b / 5%);
+	  transition: background var(--transition-fade);
+  }
+}
+
+@utility links-none {
+  & a:not(:hover):not([aria-current="page"]) {
+	  text-decoration: none;
+  }
+}
+
+/* 
+VISUALLY HIDDEN UTILITY
+Info: https://piccalil.li/quick-tip/visually-hidden/ 
+*/
+@utility visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
