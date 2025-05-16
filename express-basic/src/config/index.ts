@@ -1,10 +1,29 @@
+import path from "node:path";
+import fs from "node:fs";
+
 import { envToNumber, envToStr } from "@config/helpers";
 import { configSchema } from "@config/schema";
 import { stage } from "@config/stage";
 import dotenv from "dotenv";
 import type { z } from "zod";
 
-dotenv.config();
+// Always run with `op run --env-file=secrets/dev.env`
+// but allow local override via secrets/local.env
+const localEnvPath = path.resolve(process.cwd(), "secrets", "local.env");
+
+// First, read from local.env as raw key-value pairs
+if (fs.existsSync(localEnvPath)) {
+  const localOverrides = dotenv.parse(fs.readFileSync(localEnvPath));
+  const overridden: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(localOverrides)) {
+    process.env[key] = value;
+    overridden[key] = value;
+  }
+
+  console.log("🔁 Overridden environment variables from secrets/local.env:");
+  console.table(overridden);
+}
 
 export type AppConfigInput = z.input<typeof configSchema>;
 export type AppConfig = z.infer<typeof configSchema>;

@@ -6,15 +6,15 @@ A TypeScript-first, scalable Express API template designed for real-world produc
 
 ## 🔧 Features
 
-* 🚀 TypeScript-first with strict typing and type inference
-* 🧩 Modular architecture (routes, controllers, services, models)
-* 📦 Clean dependency setup with `tsx`, `tsup`, and `vitest`
-* 🔐 Secure by default (helmet, trust proxy, error handling)
-* 🪵 Structured logging with Winston + Morgan integration
-* 🧪 Built-in testing with `vitest` and `supertest`
-* 🛠 Environment-aware config system using `zod`
-* 🔄 Graceful shutdown support (K8s/Docker-ready)
-* 🔑 Optional 1Password secrets manager integration
+- 🚀 TypeScript-first with strict typing and type inference
+- 🧩 Modular architecture (routes, controllers, services, models)
+- 📦 Clean dependency setup with `tsx`, `tsup`, and `vitest`
+- 🔐 Secure by default (helmet, trust proxy, error handling)
+- 🪵 Structured logging with Winston + Morgan integration
+- 🧪 Built-in testing with `vitest` and `supertest`
+- 🛠 Environment-aware config system using `zod`
+- 🔄 Graceful shutdown support (K8s/Docker-ready)
+- 🔑 Optional 1Password secrets manager integration
 
 ---
 
@@ -50,44 +50,85 @@ Create a `.env` or use secrets injection (see below).
 
 ---
 
-## ⚙️ Environment Config
+## ⚙️ Environment Configuration
 
-App config is fully typed and validated using `zod`, via `config/index.ts`.
+The app configuration is fully typed and validated using `zod`, via `config/index.ts`.
+
+### 🧠 How it works:
+
+1. Secrets are injected at runtime using `op run` (via `secrets/dev.env`)
+2. Optional developer-specific overrides can be placed in `secrets/local.env`
+3. All environment variables are loaded and validated at startup
 
 You can extend this with:
 
-* Runtime defaults per `stage`
-* Derived config (e.g., `log_level` by `stage`)
-
-Supports `.env`, `.env.{stage}` fallback.
+- Runtime defaults per `stage`
+- Derived values (e.g., `log_level` based on `NODE_ENV` or `APP_ENV`)
 
 ---
 
-## 🔐 Secrets Management (1Password optional)
+## 🔐 Secrets Management (Default: 1Password CLI)
 
-If you prefer not to use `.env` files, you can use 1Password:
+This template defaults to using **1Password's `op run`** for secure secrets injection.
 
-1. Create a `secrets/dev.env` with `op://` references:
+### ✅ Step 1: Create a versioned secret reference file
 
 ```env
+# secrets/dev.env
 PORT=op://development/sp-express-basic/secret_port
 NODE_ENV=development
+DB_PATH=op://development/sp-express-basic/database_path
 ```
 
-2. Load secrets using:
+> ℹ️ This file contains only `op://` references and is safe to commit.
+
+---
+
+### ✅ Step 2: Run the dev server using 1Password
 
 ```sh
 op run --env-file=secrets/dev.env -- pnpm dev
 ```
 
-Alternatively, use JSON templates with `op inject`:
+This injects all referenced secrets into the environment before starting the app.
 
-```sh
-eval $(op inject -i secrets/dev.env.json -f dotenv)
-pnpm dev
+---
+
+## 🛠 Optional: Local Overrides
+
+To override specific variables (e.g., for local testing), create:
+
+```env
+# secrets/local.env
+PORT=5050
+DB_PATH=./dev.db
 ```
 
-> ℹ️ The template detects stage from `NODE_ENV` or `APP_ENV`.
+These values will **override** any variables injected via `op run`.
+
+> ⚠️ `secrets/local.env` is ignored by `.gitignore` and should never be committed.
+
+---
+
+## 🧪 Debugging Overrides
+
+When `secrets/local.env` is loaded, overridden values will be displayed in a structured table:
+
+```
+🔁 Overridden environment variables from secrets/local.env:
+┌────────────┬────────────┐
+│  (index)   │   Values   │
+├────────────┼────────────┤
+│   PORT     │  '5050'    │
+│ DB_PATH    │ './dev.db' │
+└────────────┴────────────┘
+```
+
+This makes it easy to confirm exactly which environment variables were overridden locally.
+
+---
+
+Let me know if you want to break this out into a standalone file and link to it!
 
 ---
 
@@ -111,9 +152,9 @@ Middleware is declared with explicit order and type enforcement:
 
 ```ts
 const middlewareStack = [
-  { name: 'cors', handler: cors() },
-  { name: 'json-body', handler: express.json() },
-  { name: 'logger', handler: httpLogger },
+  { name: "cors", handler: cors() },
+  { name: "json-body", handler: express.json() },
+  { name: "logger", handler: httpLogger },
 ];
 ```
 
@@ -128,9 +169,7 @@ Apply via `applyMiddleware(app)` — logged for visibility.
 Supports versioned and standalone routes:
 
 ```ts
-/api/v1/users
-/api/v2/users
-/health (standalone)
+/api/1v / users / api / v2 / users / health(standalone);
 ```
 
 Extensible and type-safe, with declarative mounting logic.
@@ -139,9 +178,9 @@ Extensible and type-safe, with declarative mounting logic.
 
 ## 📤 Logging
 
-* Winston logger with per-stage format (`debug`, `info`, etc.)
-* Morgan piped into Winston under the `http` level
-* Pretty-printed in `dev`, JSON in `prod`
+- Winston logger with per-stage format (`debug`, `info`, etc.)
+- Morgan piped into Winston under the `http` level
+- Pretty-printed in `dev`, JSON in `prod`
 
 ---
 
@@ -149,9 +188,9 @@ Extensible and type-safe, with declarative mounting logic.
 
 App listens for `SIGINT` / `SIGTERM`:
 
-* Stops HTTP server
-* Closes DB connection
-* Logs clean exit
+- Stops HTTP server
+- Closes DB connection
+- Logs clean exit
 
 Register any additional shutdown logic via `registerShutdown()`.
 
@@ -161,13 +200,13 @@ Register any additional shutdown logic via `registerShutdown()`.
 
 These features are not included by default, but are strongly encouraged:
 
-* 🔁 Request ID middleware (for tracing)
-* ⚠️ Linting for circular dependencies
-* ✍️ Explicit return types for all handlers (enforced by Biome)
-* 🔐 Input sanitization (e.g., xss-clean)
-* 🔍 Metrics / tracing integration
-* 🧩 Use of `helmet.contentSecurityPolicy` only in prod
-* 🧪 Abstract DB layer for easier test mocking
+- 🔁 Request ID middleware (for tracing)
+- ⚠️ Linting for circular dependencies
+- ✍️ Explicit return types for all handlers (enforced by Biome)
+- 🔐 Input sanitization (e.g., xss-clean)
+- 🔍 Metrics / tracing integration
+- 🧩 Use of `helmet.contentSecurityPolicy` only in prod
+- 🧪 Abstract DB layer for easier test mocking
 
 ---
 
@@ -181,6 +220,6 @@ MIT. Use freely, modify heavily.
 
 Inspired by:
 
-* [Node Best Practices](https://github.com/goldbergyoni/nodebestpractices)
-* Real-world usage needs from production teams
-* 1Password CLI & modern secrets workflows
+- [Node Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+- Real-world usage needs from production teams
+- 1Password CLI & modern secrets workflows

@@ -74,10 +74,20 @@ web_modules/
 
 # dotenv environment variable files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 .env.local
+
+# Allow these (contain only op:// references)
+!secrets/prod.env
+!secrets/staging.env
+!secrets/dev.env
+!secrets/preview.env
+!secrets/ci.env
+!secrets/qa.env
+
+# Ignore personal or sensitive overrides
+secrets/*.local.env
+secrets/local.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
