@@ -13,13 +13,13 @@ const localEnvPath = path.resolve(process.cwd(), "secrets", "local.env");
 
 // First, read from local.env as raw key-value pairs
 if (stage !== "production" && fs.existsSync(localEnvPath)) {
-  const localOverrides = dotenv.parse(fs.readFileSync(localEnvPath));
-  const overridden: Record<string, string> = {};
+	const localOverrides = dotenv.parse(fs.readFileSync(localEnvPath));
+	const overridden: Record<string, string> = {};
 
-  for (const [key, value] of Object.entries(localOverrides)) {
-    process.env[key] = value;
-    overridden[key] = value;
-  }
+	for (const [key, value] of Object.entries(localOverrides)) {
+		process.env[key] = value;
+		overridden[key] = value;
+	}
 
 	if (stage === "development") {
 		console.log("🔁 Overridden environment variables from secrets/local.env:");
@@ -43,6 +43,7 @@ const inputConfig: AppConfigInput = {
 	api_version: envToStr(process.env.API_VERSION),
 	stage,
 	port: envToNumber(process.env.PORT),
+	db_url: envToStr(process.env.DB_URL),
 	db_path: envToStr(process.env.DB_PATH),
 	db_schema_path: envToStr(process.env.DB_SCHEMA_PATH),
 	log_level: logLevelsByStage[stage],

@@ -1,0 +1,48 @@
+{
+  "name": "spt-express-basic",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "db:init": "tsx src/db/init.ts",
+    "dev": "op run --env-file=secrets/dev.env -- tsx watch src/index.ts",
+    "build": "tsup src/index.ts --out-dir dist --format esm",
+    "clean": "rm -rf dist",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check --formatter-enabled=false --linter-enabled=false --organize-imports-enabled=true --write .",
+    "test": "vitest run --reporter verbose",
+    "test:watch": "vitest",
+    "dev:db:generate": "op run --env-file=secrets/dev.env -- drizzle-kit generate --config=dev.drizzle.config.ts",
+    "dev:db:migrate": "op run --env-file=secrets/dev.env -- drizzle-kit migrate --config=dev.drizzle.config.ts",
+    "dev:db:push": "op run --env-file=secrets/dev.env -- drizzle-kit push --config=dev.drizzle.config.ts",
+    "dev:db:studio": "op run --env-file=secrets/dev.env -- drizzle-kit studio --config=dev.drizzle.config.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.16.0",
+    "winston": "^3.17.0",
+    "zod": "^3.25.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.19",
+    "@types/pg": "^8.15.2",
+    "@types/supertest": "^6.0.3",
+    "drizzle-kit": "^0.31.1",
+    "supertest": "^7.1.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.3"
+  }
+}
