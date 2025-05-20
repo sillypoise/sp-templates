@@ -1,21 +1,21 @@
 {
-  "name": "turborepo-start",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "biome format . --write",
-    "check-types": "turbo run check-types"
-  },
-  "devDependencies": {
-    "biome": "^0.3.3",
-    "turbo": "^2.5.3",
-    "typescript": "5.8.2"
-  },
-  "packageManager": "pnpm@10.10.0",
-  "volta": {
-    "node": "24.0.1",
-    "pnpm": "10.10.0"
-  }
+	"name": "turborepo-start",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "biome format . --write",
+		"check-types": "turbo run check-types"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"turbo": "^2.5.3",
+		"typescript": "5.8.2"
+	},
+	"packageManager": "pnpm@10.10.0",
+	"volta": {
+		"node": "24.0.1",
+		"pnpm": "10.10.0"
+	}
 }
