@@ -13,13 +13,13 @@ const localEnvPath = path.resolve(process.cwd(), "secrets", "local.env");
 
 // First, read from local.env as raw key-value pairs
 if (stage !== "production" && fs.existsSync(localEnvPath)) {
-  const localOverrides = dotenv.parse(fs.readFileSync(localEnvPath));
-  const overridden: Record<string, string> = {};
+	const localOverrides = dotenv.parse(fs.readFileSync(localEnvPath));
+	const overridden: Record<string, string> = {};
 
-  for (const [key, value] of Object.entries(localOverrides)) {
-    process.env[key] = value;
-    overridden[key] = value;
-  }
+	for (const [key, value] of Object.entries(localOverrides)) {
+		process.env[key] = value;
+		overridden[key] = value;
+	}
 
 	if (stage === "development") {
 		console.log("🔁 Overridden environment variables from secrets/local.env:");
