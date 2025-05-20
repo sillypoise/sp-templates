@@ -3,15 +3,15 @@ import { InlineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 const vite: InlineConfig = {
-  server: {
-    allowedHosts: ["sp-dev"], // Allow the specified host
-  },
-  plugins: [
-    tsConfigPaths({
-      projects: ["./tsconfig.json"],
-    }),
-  ],
+	server: {
+		allowedHosts: ["sp-dev"], // Allow the specified host
+	},
+	plugins: [
+		tsConfigPaths({
+			projects: ["./tsconfig.json"],
+		}),
+	],
 };
 export default defineConfig({
-  vite,
+	vite,
 });
