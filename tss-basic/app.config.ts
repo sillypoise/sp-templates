@@ -1,5 +1,5 @@
 import { defineConfig } from "@tanstack/react-start/config";
-import { InlineConfig } from "vite";
+import type { InlineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 const vite: InlineConfig = {
