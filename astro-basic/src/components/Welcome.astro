@@ -1,0 +1,50 @@
+---
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+];
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2
+        class="mt-2 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl"
+      >
+        {content}
+      </h2>
+      <p
+        class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8"
+      >
+        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
+        cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.
+      </p>
+
+      <div class="mt-8 flex max-w-2xl flex-wrap gap-x-6 gap-y-4 lg:mx-0">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="my-8 inline-block rounded-lg bg-pretty px-3.5 py-1.5 text-base font-semibold shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+            >
+              {item.name}
+              <span aria-hidden="true">→</span>
+            </a>
+          ))
+        }
+      </div>
+      <!-- <a -->
+      <!--   href="/about" -->
+      <!--   class="mt-8 inline-block rounded-lg bg-pretty px-3.5 py-1.5 text-base font-semibold shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20" -->
+      <!-- > -->
+      <!--   Learn more <span aria-hidden="true">→</span> -->
+      <!-- </a> -->
+    </div>
+  </div>
+</div>
