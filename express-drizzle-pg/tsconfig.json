@@ -12,6 +12,7 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"noImplicitReturns": true,
+		"noImplicitAny": true,
 		"allowSyntheticDefaultImports": true,
 		"noImplicitOverride": true,
 		"baseUrl": "src",
