@@ -1,6 +1,6 @@
 import { Router } from "express";
-import healthRouter from "./health.route";
-import usersRouter from "./users.route";
+import healthRouter from "./health.route.js";
+import usersRouter from "./users.route.js";
 
 const router = Router();
 

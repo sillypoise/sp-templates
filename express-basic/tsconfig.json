@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "ES2022",
-		"module": "ESNext",
-		"moduleResolution": "Node",
-		"lib": ["ES2022"],
+		"target": "ESNext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"lib": ["ESNext"],
 		"outDir": "dist",
 		"rootDir": "src",
 		"strict": true,
@@ -18,9 +18,7 @@
 		"baseUrl": "src",
 		"paths": {
 			"@app": ["app.ts"],
-			"@config": ["config/index.ts"],
 			"@config/*": ["config/*"],
-			"@db": ["db/index.ts"],
 			"@db/*": ["db/*"],
 			"@server": ["server.ts"],
 			"@index": ["index.ts"],
@@ -30,7 +28,6 @@
 			"@services/*": ["services/*"],
 			"@utils/*": ["utils/*"],
 			"@models/*": ["models/*"],
-			"@logger": ["logger/index.ts"],
 			"@logger/*": ["logger/*"],
 			"@schemas/*": ["schemas/*"]
 		},

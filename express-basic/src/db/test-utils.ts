@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import db from "@db";
-import { logger } from "@logger";
+import { db } from "@db/index.js";
+import { logger } from "@logger/index.js";
 
 const schemaPath = path.resolve(process.cwd(), "scripts", "setup.sql");
 

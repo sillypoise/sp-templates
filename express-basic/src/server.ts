@@ -1,9 +1,9 @@
 import http from "node:http";
 import app from "@app";
-import { config } from "@config";
-import db from "@db";
-import { logger } from "@logger";
-import { registerShutdown, runShutdownTasks } from "@utils/shutdown";
+import { config } from "@config/index.js";
+import { db } from "@db/index.js";
+import { logger } from "@logger/index.js";
+import { registerShutdown, runShutdownTasks } from "@utils/shutdown.js";
 
 const server = http.createServer(app);
 

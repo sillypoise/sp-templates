@@ -1,9 +1,9 @@
 import path from "node:path";
 import fs from "node:fs";
 
-import { envToNumber, envToStr } from "@config/helpers";
-import { configSchema } from "@config/schema";
-import { stage } from "@config/stage";
+import { envToNumber, envToStr } from "@config/helpers.js";
+import { configSchema } from "@config/schema.js";
+import { stage } from "@config/stage.js";
 import dotenv from "dotenv";
 import type { z } from "zod";
 

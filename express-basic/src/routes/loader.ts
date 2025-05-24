@@ -1,7 +1,7 @@
-import { type AppConfig, config } from "@config";
-import type { apiVersions } from "@config/schema";
-import healthRoutes from "@routes/health.route";
-import userRoutes from "@routes/users.route";
+import { type AppConfig, config } from "@config/index.js";
+import type { apiVersions } from "@config/schema.js";
+import healthRoutes from "@routes/health.route.js";
+import userRoutes from "@routes/users.route.js";
 import type { Express, Router } from "express";
 // import userV2Routes from "@routes/v2/users.route"; // hypothetical
 

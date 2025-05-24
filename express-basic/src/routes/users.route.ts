@@ -1,7 +1,7 @@
 import {
 	handleCreateUser,
 	handleGetUsers,
-} from "@controllers/users.controller";
+} from "@controllers/users.controller.js";
 import { Router } from "express";
 
 const router = Router();

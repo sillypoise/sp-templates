@@ -1,5 +1,5 @@
 import app from "@app";
-import { resetDb } from "@db/test-utils";
+import { resetDb } from "@db/test-utils.js";
 import request from "supertest";
 
 describe("/health controller ", () => {

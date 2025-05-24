@@ -3,8 +3,8 @@ import express from "express";
 import type { Express, RequestHandler } from "express";
 import helmet from "helmet";
 
-import { config } from "@config";
-import { httpLogger } from "@logger/http-logger";
+import { config } from "@config/index.js";
+import { httpLogger } from "@logger/http-logger.js";
 
 // 1. List middleware names in the _required_ order
 const middlewareOrder = [

@@ -1,5 +1,5 @@
-import { userCreateSchema } from "@schemas/users.schema";
-import { createUser, getUsers } from "@services/users.service";
+import { userCreateSchema } from "@schemas/users.schema.js";
+import { createUser, getUsers } from "@services/users.service.js";
 import type { Request, RequestHandler, Response } from "express";
 
 export const handleGetUsers = (

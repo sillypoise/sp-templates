@@ -1,5 +1,5 @@
-import db from "@db";
-import { logger } from "@logger";
+import { db } from "@db/index.js";
+import { logger } from "@logger/index.js";
 
 export type User = {
 	id: number;

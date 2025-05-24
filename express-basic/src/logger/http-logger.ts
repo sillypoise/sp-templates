@@ -1,4 +1,4 @@
-import { morganStream } from "@logger";
+import { morganStream } from "@logger/index.js";
 import type { Request, Response } from "express";
 import morgan from "morgan";
 
