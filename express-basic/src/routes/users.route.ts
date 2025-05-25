@@ -1,7 +1,7 @@
 import {
 	handleCreateUser,
 	handleGetUsers,
-} from "@controllers/users.controller.js";
+} from "@controllers/users.controller.ts";
 import { Router } from "express";
 
 const router = Router();

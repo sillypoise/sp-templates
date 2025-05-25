@@ -1,5 +1,5 @@
 import app from "@app";
-import { resetDb } from "@db/test-utils.js";
+import { resetDb } from "@db/test-utils.ts";
 import request from "supertest";
 
 describe("/users controller", () => {

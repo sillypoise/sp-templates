@@ -1,9 +1,9 @@
 import path from "node:path";
 import fs from "node:fs";
 
-import { envToNumber, envToStr } from "@config/helpers.js";
-import { configSchema } from "@config/schema.js";
-import { stage } from "@config/stage.js";
+import { envToNumber, envToStr } from "@config/helpers.ts";
+import { configSchema } from "@config/schema.ts";
+import { stage } from "@config/stage.ts";
 import dotenv from "dotenv";
 import type { z } from "zod";
 
@@ -43,6 +43,7 @@ const inputConfig: AppConfigInput = {
 	api_version: envToStr(process.env.API_VERSION),
 	stage,
 	port: envToNumber(process.env.PORT),
+	db_url: envToStr(process.env.DB_URL),
 	db_path: envToStr(process.env.DB_PATH),
 	db_schema_path: envToStr(process.env.DB_SCHEMA_PATH),
 	log_level: logLevelsByStage[stage],

@@ -14,9 +14,10 @@ export const configSchema = z.object({
 		"qa",
 	]),
 	port: z.coerce.number().default(8080),
+	db_url: z.string().url().default("file:./sqlite.db"),
 	db_path: z.string().default(path.resolve(process.cwd(), "sqlite.db")),
 	db_schema_path: z
 		.string()
-		.default(path.resolve(process.cwd(), "scripts", "setup.sql")),
+		.default(path.resolve(process.cwd(), "src", "db", "schema.ts")),
 	log_level: z.enum(["error", "warn", "info", "debug"]),
 });

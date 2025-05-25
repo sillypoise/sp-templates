@@ -1,24 +1,22 @@
-import { db } from "@db/index.js";
-import { logger } from "@logger/index.js";
+import { db } from "@db/index.ts";
+import { users } from "@db/schema.ts";
+import type { NewUser, User } from "@db/types.ts";
+import { desc } from "drizzle-orm";
 
-export type User = {
-	id: number;
-	name: string;
-	email: string;
-	created_at: string;
+/**
+ * Model
+ * Responsibility: Directly interacts with the database.
+ * Returns: Always asynchronous, since database operations are async.
+ */
+
+export const getAllUsers = async (): Promise<User[]> => {
+	const result = await db.select().from(users).orderBy(desc(users.created_at));
+	return result;
 };
 
-export const getAllUsers = (): User[] => {
-	const stmt = db.prepare("SELECT * FROM users ORDER BY created_at DESC");
-	const users = stmt.all() as User[];
-	logger.info(`Fetched ${users.length} user(s)`);
-	return users;
-};
-
-export const createUser = (data: { name: string; email: string }): User => {
-	const stmt = db.prepare("INSERT INTO users (name, email) VALUES (?, ?)");
-	const result = stmt.run(data.name, data.email);
-
-	const getUser = db.prepare("SELECT * FROM users WHERE id = ?");
-	return getUser.get(result.lastInsertRowid) as User;
+export const createUser = async (
+	data: Pick<NewUser, "name" | "email">,
+): Promise<User> => {
+	const insertResult = await db.insert(users).values(data).returning();
+	return insertResult[0];
 };

@@ -1,5 +1,5 @@
-import { userCreateSchema } from "@schemas/users.schema.js";
-import { createUser, getUsers } from "@services/users.service.js";
+import { userCreateSchema } from "@schemas/users.schema.ts";
+import { createUser, getUsers } from "@services/users.service.ts";
 import type { Request, RequestHandler, Response } from "express";
 
 export const handleGetUsers = (
@@ -10,10 +10,10 @@ export const handleGetUsers = (
 	res.status(200).json(users);
 };
 
-export const handleCreateUser: RequestHandler = (
+export const handleCreateUser: RequestHandler = async (
 	req: Request,
 	res: Response,
-): void | Promise<void> => {
+): Promise<void> => {
 	const parseResult = userCreateSchema.safeParse(req.body);
 
 	if (!parseResult.success) {
@@ -21,10 +21,9 @@ export const handleCreateUser: RequestHandler = (
 			error: "Invalid request body",
 			details: parseResult.error.flatten(),
 		});
-		return; // early return helps ts infer that data is defined after this branch
+		return;
 	}
 
-	const user = createUser(parseResult.data);
+	const user = await createUser(parseResult.data); // ✅ Await the async service
 	res.status(201).json(user);
-	return; // always remember to return
 };

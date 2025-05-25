@@ -1,9 +1,8 @@
 import http from "node:http";
 import app from "@app";
-import { config } from "@config/index.js";
-import { db } from "@db/index.js";
-import { logger } from "@logger/index.js";
-import { registerShutdown, runShutdownTasks } from "@utils/shutdown.js";
+import { config } from "@config/index.ts";
+import { logger } from "@logger/index.ts";
+import { registerShutdown, runShutdownTasks } from "@utils/shutdown.ts";
 
 const server = http.createServer(app);
 
@@ -40,7 +39,6 @@ registerShutdown(() => {
 
 registerShutdown(() => {
 	logger.info("🧼 Closing SQLite DB...");
-	db.close();
 	logger.info("✅ SQLite DB closed.");
 });
 
